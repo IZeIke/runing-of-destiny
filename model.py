@@ -25,20 +25,28 @@ class World:
         self.turtle = Turtle(150,450)
         self.status_snail = 0
         self.status_turtle = 0
+        self.state_win =-1;
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.RIGHT and self.status_snail == 0:
             self.stickman.x += 5
-            self.status=1;
+            self.status_snail=1;
         elif key == arcade.key.LEFT and self.status_snail == 1:
             self.stickman.x += 5
-            self.status=0;
+            self.status_snail=0;
         elif key == arcade.key.D and self.status_turtle == 0:
             self.turtle.x += 5
-            self.status=1;
+            self.status_turtle=1;
         elif key == arcade.key.A and self.status_turtle == 1:
             self.turtle.x += 5
-            self.status=0;
+            self.status_turtle=0;
+
+
+    def win_state(self):
+        if self.stickman.x>1200 and self.turtle.x<1200:
+            self.state_win=0;
+        elif self.turtle.x>1200 and self.stickman.x<1200:
+            self.state_win=1;
 
 
     def animate(self, delta):
