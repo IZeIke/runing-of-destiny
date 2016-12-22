@@ -2,7 +2,9 @@ import arcade
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 600
-STATUS = 0
+
+from model import Stickman
+
 
 
 class GameWindow(arcade.Window):
@@ -11,19 +13,18 @@ class GameWindow(arcade.Window):
 
         arcade.set_background_color(arcade.color.WHITE)
 
-        self.stickman = arcade.Sprite('images/run1.png')
-        self.stickman.set_position(100, 250)
+        self.stickman = Stickman(100,250)
+        self.stickman_sprite = arcade.Sprite('images/run1.png')
+
 
     def on_draw(self):
         arcade.start_render()
-        self.stickman.draw()
+        self.stickman_sprite.draw()
 
-    def on_key_press(self, key, modifiers):
-        if key == arcade.key.RIGHT :
-            self.stickman.set_position(self.stickman.center_x + 1, self.stickman.center_y)
-
-
-
+    def animate(self, delta):
+        stickman = self.stickman
+        stickman.animate(delta)
+        self.stickman_sprite.set_position(stickman.x,stickman.y)
 
 
 if __name__ == '__main__':
