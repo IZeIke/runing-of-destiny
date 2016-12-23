@@ -29,6 +29,7 @@ class GameWindow(arcade.Window):
         self.world = World(width,height)
         self.stickman_sprite = ModelSprite('images/snail.png',model=self.world.stickman)
         self.turtle_sprite = ModelSprite('images/turtle.png',model=self.world.turtle)
+        self.sand = arcade.Sprite('images/sand.jpg');
         self.starfish_list = arcade.SpriteList()
         filename = "images/starfish.png"
         for i in range(10):
@@ -41,6 +42,7 @@ class GameWindow(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
+        self.sand.draw()
         self.starfish_list.draw(fast=True)
         self.stickman_sprite.draw()
         self.turtle_sprite.draw()
